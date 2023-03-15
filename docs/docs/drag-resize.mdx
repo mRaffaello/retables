@@ -1,0 +1,54 @@
+---
+sidebar_position: 9
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DragResize1Table from '../src/examples/drag-resize/DragResize1Table';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
+# Drag resize
+
+You can allow user to resize table columns using the `resizable` prop of `<Table />`.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="DragResizeTable.tsx">
+```
+
+```tsx file=../src/examples/drag-resize/DragResize1Table.tsx#L6-L25
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/drag-resize/columns.ts#L4-
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <DragResize1Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+:::info
+
+Hover on the vertical lines of the `Live Example` and start dragging.
+
+:::
+
+:::caution
+
+This feature is experimental.
+
+:::

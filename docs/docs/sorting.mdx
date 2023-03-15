@@ -1,0 +1,136 @@
+---
+sidebar_position: 6
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CompareFunctionTable from '../src/components/tables/CompareFunctionTable';
+import Sorting1Table from '../src/examples/sorting/Sorting1Table';
+import Sorting2Table from '../src/examples/sorting/Sorting2Table';
+import Sorting3Table from '../src/examples/sorting/Sorting3Table';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
+# Sorting
+
+The `<Table />` component allows by default data sorting by clicking on one of the header cells.
+This is done using to the `key` property specified in `ColumnConfig`.
+
+## Custom sort icons
+
+The default sort icons can be changed via the `orderIconsConfig` prop.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="SortingTable.tsx">
+```
+
+```tsx file=../src/examples/sorting/Sorting1Table.tsx#L6-L31
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/sorting/columns.ts#L4-L10
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <Sorting1Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+## Disable sorting on some headers
+
+If some columns should not be sortable, you can do it via the `disableOrderIcon` property in `ColumnConfig`.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/sorting/columns.ts#L12-L20
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="SortingTable.tsx">
+```
+
+```tsx file=../src/examples/sorting/Sorting2Table.tsx#L6-L23
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <Sorting2Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+## Custom compare function
+
+By default, retables simply compares the different column values with the native javascript operators (`<,>,=`).
+However, this only works well with primitive types like strings and numbers.
+
+If a column displays a complex data type, or the standard comparison simply isn't enough, you can use the `compare` property of `ColumnConfig` to indicate a new sort function.
+
+In the next example we will give priority in the `job` column to people who have an `executive` title.
+
+The signature of the function is:
+
+```ts
+compare?: (a: T, b: T) => -1 | 0 | 1;
+```
+
+<BrowserOnly>{() => <CompareFunctionTable />}</BrowserOnly>
+<br />
+
+```mdx-code-block
+<Tabs>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/sorting/columns.ts#L22-
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="SortingTable.tsx">
+```
+
+```tsx file=../src/examples/sorting/Sorting3Table.tsx#L6-L23
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <Sorting3Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+## Caveats
+
+Currently you can only sort by one column at a time.

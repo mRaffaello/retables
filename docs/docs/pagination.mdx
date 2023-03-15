@@ -1,0 +1,65 @@
+---
+sidebar_position: 7
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ApiTable from '../src/components/tables/ApiTable';
+import Pagination1Table from '../src/examples/pagination/Pagination1Table';
+import { paginationProps } from '../src/config/pagination-props';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
+# Pagination
+
+The `<Table />` component natively supports pagination via the `PaginationConfig` prop.
+
+<BrowserOnly>{() => <ApiTable data={paginationProps} />}</BrowserOnly>
+<br />
+
+```mdx-code-block
+<Tabs>
+<TabItem value="PageSelector.tsx">
+```
+
+```tsx file=../src/examples/pagination/PageSelector.tsx#L4-L24
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="PaginationTable.tsx">
+```
+
+```tsx file=../src/examples/pagination/Pagination1Table.tsx#L7-L30
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/pagination/columns.ts#L4-
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <Pagination1Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+:::info
+
+The `<Table />` component can sort data only if they are already available.
+If, on the other hand, the source is already paginated, **retables** can't infer the complete data set and it would therefore be impossible to indicate the number of page or apply sorting rules.
+
+If you happen to be in this situation, you'll need to build yourself an `external paging system`.
+
+:::

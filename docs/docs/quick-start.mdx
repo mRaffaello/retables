@@ -1,0 +1,127 @@
+---
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import QuickStartTable from '../src/examples/quick-start/QuickStartTable';
+import BreakpointsTable from '../src/components/tables/BreakpointsTable';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
+# Quick start
+
+**reTables** wants to minimize the code needed to render a table. All you need to get started is:
+
+-   [**Array of data**](/examples-context#the-people-array) you want to display and its type (if you are using Typescript)
+-   [**Unique data key**](#data-key) for every item in the array
+-   Basic [**column configuration**](#column-config)
+
+:::note
+
+The following examples use the _people array_ presented early in the [doc](/examples-context#the-people-array).
+:::
+
+## Core concepts
+
+Let's start by looking at the core concepts of **reTables**.
+
+### Data key
+
+When rendering a table, **reTables** needs an internal key to identify uniquely every object in the array. Generally this key is `id` but you can specify any property, even the nested ones.
+
+In the people example you can use `id` or other values, as your `dataKey`, such as `contacts.phone` or `about.job`.
+
+:::caution
+
+Make sure that all the objects in the array have an unique `dataKey` value. Duplicated entries can cause problems during sorting or pagination.
+
+:::
+
+### NestedKeyOf type
+
+Many props, like the previous `dataKey` example, use `NestedKeyOf` as a type. This is basically a glorified `keyof`, which allows you to access nested properties in a dotted notation.
+Here is the list of the inferred values for `People`.
+
+```jsx
+import Person from 'src/types';
+import { NestedKeyOf } from 'retables';
+
+type PersonKeys = NestedKeyOf<Person>;
+// type PersonKeys = "id" | "company" | "about.firstName" | "about.lastName" | "about.job" | "about.age" | "contacts.address" | "contacts.phone"
+```
+
+### Column config
+
+Every table needs its **column config**. This is an object that describes which columns need to be displayed and how to retrieve data for each of it.
+
+```ts file=../src/examples/quick-start/columns.ts
+
+```
+
+A basic column config needs:
+
+-   **title** (string): Column name that will be displayed in the header
+-   **key** (NestedKeyOf): Object key that selects the property. (This will also effect sorting)
+
+As shown above, you can also specify a **flex property **(defaults to 1) that indicates the horizontal weight of each column.
+A complete list of the API can be found [here](/api-reference).
+
+### Breakpoints
+
+Some of the table props can be personalized, based on the current width of the screen.
+
+By default, below the `BREAKPOINT.MD`, the mobile version of the table will automatically be displayed.
+
+<BrowserOnly>{() => <BreakpointsTable />}</BrowserOnly>
+<br />
+
+:::info
+
+The `BREAKPOINT` enum is directly exported from **reTables**.
+
+:::
+
+## Your first table
+
+This is all you need to do in **reTables** to render minimal sortable and responsive table.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="QuickStartTable.tsx">
+```
+
+```tsx file=../src/examples/quick-start/QuickStartTable.tsx#L6-L25
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```ts file=../src/examples/quick-start/columns.ts
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <QuickStartTable />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+:::info
+
+All the tables on the documentation site are rendered using **reTables**. Head over to the `Live example` tab to see the result!
+
+:::
+:::note
+
+Note that here we have also applied to the **header** some personalization, using `baseHeadersClasses` and `baseCellPadding`. More of these options will be explained in the [next section](/basic-personalization).
+
+:::

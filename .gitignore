@@ -1,0 +1,17 @@
+// Standard
+**/dist/
+**/node_modules/
+
+// Archives
+*.tgz
+
+// Others
+todo.md
+docs.md
+roadmap.md
+**/.DS_Store
+example.ts
+.DS_Store
+testplan.md
+**/videos
+.github/workflows/local.yml

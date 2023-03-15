@@ -1,0 +1,103 @@
+---
+sidebar_position: 5
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Responsiveness1Table from '../src/examples/responsiveness/Responsiveness1Table';
+import Responsiveness2Table from '../src/examples/responsiveness/Responsiveness2Table';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
+# Responsiveness
+
+## Table of contents
+
+As mentioned in the [quickstart section](/quick-start), the Table component is able to scale to various page sizes (see [breakpoints](/quick-start#breakpoints)) to ensure a good experience for all users.
+
+You are able to:
+
+-   [**Hide some columns**](#hide-columns) below a specific breakpoint
+-   Show a [**mobile version**](#mobile-version) of the table designed for small devices.
+
+## Hide columns
+
+To hide a particular column under a specific breakpoint you need to use the `showAt` property of `ColumnConfig`.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/responsiveness/columns.ts#L12-
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="ResponsivenessTable.tsx">
+```
+
+```tsx file=../src/examples/responsiveness/Responsiveness1Table.tsx#L6-L23
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <Responsiveness1Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+:::info
+
+Try to resize the page and see how the table in the `Live example` changes.
+
+:::
+
+:::note
+
+Hided columns will still be visibile in the the table `mobile version`.
+
+:::
+
+## Mobile version
+
+The mobile version of the table is enabled by default under `BREAKPOINT.MD`. Since every table in the docs is renderer using **reTables**, you can see this by yourself heading over to one of the `Live examples`.
+In the following example, for demonstration purposes, we will force the mobile view on all screens.
+
+To customize this behavior use the `breakpoint` prop of `<Table />` component.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="ResponsivenessTable.tsx">
+```
+
+```tsx file=../src/examples/responsiveness/Responsiveness2Table.tsx#L6-L25
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/responsiveness/columns.ts#L4-L10
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <Responsiveness2Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```

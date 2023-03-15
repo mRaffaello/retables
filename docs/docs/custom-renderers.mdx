@@ -1,0 +1,213 @@
+---
+sidebar_position: 5
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CustomRenderers1Table from '../src/examples/custom-renderers/CustomRenderers1Table';
+import CustomRenderers2Table from '../src/examples/custom-renderers/CustomRenderers2Table';
+import CustomRenderers3Table from '../src/examples/custom-renderers/CustomRenderers3Table';
+import CustomRenderers4Table from '../src/examples/custom-renderers/CustomRenderers4Table';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
+# Custom renderers
+
+## Table of contents
+
+You can specify a custom renderer for every cell of your table.
+In particular:
+
+-   Default renderer for [**all header cells**](#header-cell-default-renderer)
+-   Default renderer for [**all body table cells**](#table-cell-default-renderer)
+-   Custom renderer for a [**specific header**](#header-cell-custom-renderer)
+-   Custom renderer for a [**specific column**](#table-cell-custom-renderer)
+
+In case both a custom renderer and a default renderer are specified, only the custom renderer will be used.
+
+:::info
+
+In the next sections other specific renderer types will be defined for some functionality (pagination, selection ...).
+
+:::
+
+## Default renderers
+
+### Header cell default renderer
+
+To set a default header renderer, firstly define a custom component that will be used to generate all the cells. <br/>
+Once this is done, all you have to do is set the renderer in the table definition as shown below. <br/>
+
+Please note that the type of `DefaultHeaderCellProps` is imported directly from **reTables**.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="DefaultHeaderCell.tsx">
+```
+
+```tsx file=../src/examples/custom-renderers/DefaultHeaderCell.tsx#L2-L10
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="CustomRenderersTable.tsx">
+```
+
+```tsx file=../src/examples/custom-renderers/CustomRenderers1Table.tsx#L7-L25
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/custom-renderers/columns.ts#L6-L13
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <CustomRenderers1Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+### Table cell default renderer
+
+The definition of a custom renderer for the table cells is analog to the one seen above. <br />
+This time, make sure to use the `DefaultCellRendererProps` as your input type.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="DefaultTableCell.tsx">
+```
+
+```tsx file=../src/examples/custom-renderers/DefaultTableCell.tsx#L2-L6
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="CustomRenderersTable.tsx">
+```
+
+```tsx file=../src/examples/custom-renderers/CustomRenderers2Table.tsx#L8-L27
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/custom-renderers/columns.ts#L6-L13
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <CustomRenderers2Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+## Custom specific renderers
+
+### Header cell custom renderer
+
+If you need to apply specific styles to just one column, you can specify a custom readerer for each individual header via `ColumnConfig` via the `headerRenderer` property. If a default renderer has been specified, it will be overridden.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="CustomHeaderCell.tsx">
+```
+
+```tsx file=../src/examples/custom-renderers/CustomHeaderCell.tsx#L2-L8
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="CustomRenderersTable.tsx">
+```
+
+```tsx file=../src/examples/custom-renderers/CustomRenderers3Table.tsx#L8-L27
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/custom-renderers/columns.ts#L14-L21
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <CustomRenderers3Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+### Table cell custom renderer
+
+A custom renderer can also be specified for each column of the table using the `renderer` property of `ColumnConfig`. In this case the entire row object is made available to allow the creation of complex cells.
+
+With this renderer, you are not limited solely by the value specified by the `key` property.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="DoubleTableCell.tsx">
+```
+
+```tsx file=../src/examples/custom-renderers/DoubleTableCell.tsx#L3-L12
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="CustomRenderersTable.tsx">
+```
+
+```tsx file=../src/examples/custom-renderers/CustomRenderers2Table.tsx#L8-L27
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/custom-renderers/columns.ts#L23-L30
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <CustomRenderers4Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```

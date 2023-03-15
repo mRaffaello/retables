@@ -1,0 +1,205 @@
+---
+sidebar_position: 4
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ApiTable from '../src/components/tables/ApiTable';
+import BasicPersonalization1Table from '../src/examples/basic-personalization/BasicPersonalization1Table';
+import BasicPersonalization2Table from '../src/examples/basic-personalization/BasicPersonalization2Table';
+import BasicPersonalization3Table from '../src/examples/basic-personalization/BasicPersonalization3Table';
+import BasicPersonalization4Table from '../src/examples/basic-personalization/BasicPersonalization4Table';
+import {
+    baseTableProps,
+    baseCellPaddingProps,
+    gridConfigProps
+} from '../src/config/basic-personalization-props';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
+# Basic personalization
+
+## Table of contents
+
+In this page you will learn how to:
+
+-   Apply custom classes to the [**table**, **headers** and **rows**](#basic-example)
+-   Apply even [**spacing**](#default-cell-spacing)
+-   Edit the [**grid appereance**](#edit-the-grid-appereance)
+
+:::info
+
+As referenced before, please keep in mind that, for semplicity, all the examples use [Tailwind](https://tailwindcss.com/) as css framework. However, **reTables** does not restrict you in any way when choosing how to handle **css**.
+
+:::
+
+## Apply custom classes
+
+You can start customizing your table from the basics by specifying css classes on the various elements.
+
+<BrowserOnly>{() => <ApiTable data={baseTableProps} />}</BrowserOnly>
+
+### Basic example
+
+```mdx-code-block
+<Tabs>
+<TabItem value="BasicPersonalizationTable.tsx">
+```
+
+```tsx file=../src/examples/basic-personalization/BasicPersonalization1Table.tsx#L6-L19
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/basic-personalization/columns.ts#L4-
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <BasicPersonalization1Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+:::note
+
+This is not the recomended way to apply padding and it's only for demostrating purposes. Visit [this section](#default-cell-spacing) to know more
+
+:::
+
+### Custom row style depending on row index
+
+In the case of the row, there is also the possibility to specify different classes according to the index of the row. This is useful, for example, when you want to insert different colors on every other row to make reading easier.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="BasicPersonalizationTable.tsx">
+```
+
+```tsx file=../src/examples/basic-personalization/BasicPersonalization2Table.tsx#L6-L23
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/basic-personalization/columns.ts#L4-
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <BasicPersonalization2Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+:::note
+
+Note that you have also access to the `isSelected` information. Please visit the [Selection](/selection) page of the documentation to know more about it.
+
+:::
+
+## Default cell spacing
+
+Note that you have also access to the `isSelected` information. Please visit the [Selection](/selection) page of the documentation to know more about it.
+
+<BrowserOnly>{() => <ApiTable data={baseCellPaddingProps} />}</BrowserOnly>
+<br />
+
+```mdx-code-block
+<Tabs>
+<TabItem value="BasicPersonalizationTable.tsx">
+```
+
+```tsx file=../src/examples/basic-personalization/BasicPersonalization3Table.tsx#L6-L26
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/basic-personalization/columns.ts#L4-
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <BasicPersonalization3Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+:::note
+
+For more advanced use you can apply spacing yourself, using [custom renderers](/custom-renderers).
+
+:::
+
+## Edit the grid appereance
+
+The `<Table />` component accepts a `gridConfig` object with the following properties:
+
+<BrowserOnly>{() => <ApiTable data={gridConfigProps} />}</BrowserOnly>
+<br />
+
+```mdx-code-block
+<Tabs>
+<TabItem value="BasicPersonalizationTable.tsx">
+
+```
+
+```tsx file=../src/examples/basic-personalization/BasicPersonalization4Table.tsx#L6-L32
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/basic-personalization/columns.ts#L4-
+
+```
+
+```mdx-code-block
+</TabItem>
+
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <BasicPersonalization4Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+:::info
+
+Instead of specifying all the `EXTERN_LINES` or none of them inside the `showExternLines`, you can use `EXTERN_LINE_GROUP.NONE` or `EXTERN_LINE_GROUP.ALL`.
+
+:::

@@ -1,0 +1,69 @@
+---
+sidebar_position: 10
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ApiTable from '../src/components/tables/ApiTable';
+import App from '../src/examples/global-configuration/App';
+import GlobalConfiguration1Table from '../src/examples/global-configuration/GlobalConfiguration1Table';
+import { globalProps } from '../src/config/global-configuration-props';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
+# Global configuration
+
+If your site contains many tables, it is possible to define common properties that will be applied to all through the `<InitTables />` provider.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="App.tsx">
+```
+
+```tsx file=../src/examples/global-configuration/App.tsx#L7-L21
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="GlobalConfigurationTable.tsx">
+```
+
+```tsx file=../src/examples/global-configuration/GlobalConfiguration1Table.tsx#L6-L9
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/global-configuration/columns.ts#L4-L10
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>
+    {() => (
+        <App>
+            <GlobalConfiguration1Table />
+        </App>
+    )}
+</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+:::info
+
+You can always override a property of `<InitTables />` by redefining it on `<Table />`
+:::
+
+## Global properties
+
+<BrowserOnly>{() => <ApiTable data={globalProps} />}</BrowserOnly>

@@ -1,0 +1,74 @@
+---
+sidebar_position: 8
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ApiTable from '../src/components/tables/ApiTable';
+import Selection1Table from '../src/examples/selection/Selection1Table';
+import { selectionProps } from '../src/config/selection-props';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
+# Selection
+
+If you need to make your rows selectable you can do it via the `selectionConfig` prop of `<Table />`.
+
+You have the ability to render a selector at the start of each line and define a callback for when it's pressed.
+You can also choose whether to show a global selector for all page elements within the header.
+
+<BrowserOnly>{() => <ApiTable data={selectionProps} />}</BrowserOnly>
+<br />
+
+```mdx-code-block
+<Tabs>
+<TabItem value="SelectionCell.tsx">
+```
+
+```tsx file=../src/examples/selection/SelectionCell.tsx#L2-L15
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="SelectionHeaderCell.tsx">
+```
+
+```tsx file=../src/examples/selection/SelectionHeaderCell.tsx#L2-L15
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="SelectionTable.tsx">
+```
+
+```tsx file=../src/examples/selection/Selection1Table.tsx#L8-L35
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="columns.ts">
+```
+
+```tsx file=../src/examples/selection/columns.ts#L4-
+
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Live example">
+```
+
+<BrowserOnly>{() => <Selection1Table />}</BrowserOnly>
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+:::info
+
+As mentioned in the [Basic Personalization](/basic-personalization#custom-row-style-depending-on-row-index) section,
+you can apply custom row styles only to the selected row.
+:::

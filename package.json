@@ -1,0 +1,15 @@
+{
+    "name": "retables-monorepo",
+    "version": "0.1.0",
+    "description": "Yet another react table library",
+    "private": true,
+    "main": "index.js",
+    "scripts": {
+        "bump-patch": "./bin/upgrade-version.sh -p",
+        "bump-minor": "./bin/upgrade-version.sh -m",
+        "bump-major": "./bin/upgrade-version.sh -M"
+    },
+    "keywords": [],
+    "author": "Marco Raffaello",
+    "license": "ISC"
+}

@@ -1,0 +1,64 @@
+---
+sidebar_position: 11
+---
+
+import ApiTable from '../src/components/tables/ApiTable';
+import { selectionProps } from '../src/config/selection-props';
+import { paginationProps } from '../src/config/pagination-props';
+import { globalProps } from '../src/config/global-configuration-props';
+import {
+    tableProps,
+    columnProps,
+    skeletonProps,
+    orderIconsConfig,
+    optionsCell,
+    columnOrder
+} from '../src/config/complete-api-props';
+import { baseCellPaddingProps, gridConfigProps } from '../src/config/basic-personalization-props';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
+# Api reference
+
+## Global config
+
+<BrowserOnly>{() => <ApiTable data={globalProps} />}</BrowserOnly>
+
+## Table config
+
+<BrowserOnly>{() => <ApiTable data={tableProps} />}</BrowserOnly>
+
+## Column config
+
+<BrowserOnly>{() => <ApiTable data={columnProps} />}</BrowserOnly>
+
+## Grid config
+
+<BrowserOnly>{() => <ApiTable data={gridConfigProps} />}</BrowserOnly>
+
+## Pagination config
+
+<BrowserOnly>{() => <ApiTable data={paginationProps} />}</BrowserOnly>
+
+## Order icons config
+
+<BrowserOnly>{() => <ApiTable data={orderIconsConfig} />}</BrowserOnly>
+
+## Selection config
+
+<BrowserOnly>{() => <ApiTable data={selectionProps} />}</BrowserOnly>
+
+## Skeleton config
+
+<BrowserOnly>{() => <ApiTable data={skeletonProps} />}</BrowserOnly>
+
+## Cell padding
+
+<BrowserOnly>{() => <ApiTable data={baseCellPaddingProps} />}</BrowserOnly>
+
+## Options cell
+
+<BrowserOnly>{() => <ApiTable data={optionsCell} />}</BrowserOnly>
+
+## Column Order
+
+<BrowserOnly>{() => <ApiTable data={columnOrder} />}</BrowserOnly>
