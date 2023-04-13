@@ -7,8 +7,8 @@ export type ApiDesc = {
 
 export type BreakpointDesc = {
     breakpoint: string;
-    from?: number;
-    to?: number;
+    from: number;
+    to: number;
 };
 
 export type CompareFunctionDesc = {

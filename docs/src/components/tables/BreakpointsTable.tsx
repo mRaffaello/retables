@@ -7,7 +7,9 @@ const BreakpointCell = (props: { item: BreakpointDesc }) => (
 );
 
 const PxCell = (props: { px?: number }) => (
-    <div className='overflow-hidden'>{props.px ? `${props.px}px` : '-'}</div>
+    <div className='overflow-hidden'>
+        {props.px && props.px !== Infinity ? `${props.px}px` : '-'}
+    </div>
 );
 
 export const breakpointsColumn: ColumnConfig<BreakpointDesc>[] = [
@@ -38,7 +40,7 @@ const breakpointData: BreakpointDesc[] = [
     { breakpoint: 'BREAKPOINT.MD', from: 768, to: 1023 },
     { breakpoint: 'BREAKPOINT.LG', from: 1024, to: 1279 },
     { breakpoint: 'BREAKPOINT.XL', from: 1280, to: 1535 },
-    { breakpoint: 'BREAKPOINT.DOUBLEXL', from: 1536 }
+    { breakpoint: 'BREAKPOINT.DOUBLEXL', from: 1536, to: Infinity }
 ];
 
 function BreakpointsTable() {

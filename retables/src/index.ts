@@ -11,10 +11,11 @@ import type {
     PageSelectorRendererProps,
     SelectionHeaderRendererProps,
     SelectionRendererProps,
-    ColumnHeaderCellProps
+    ColumnHeaderCellProps,
+    OptionsCellProps
 } from './types/table';
 import { BREAKPOINT, EXTERN_LINE, EXTERN_LINE_GROUP, SORT_DIRECTION } from './types/enums';
-import { NestedKeyOf } from './types/structs';
+import { NestedKeyOf, NestedKeyOfWithOptionals } from './types/structs';
 
 export { Table, InitTables, BREAKPOINT, EXTERN_LINE, EXTERN_LINE_GROUP, SORT_DIRECTION };
 
@@ -24,6 +25,7 @@ export type {
     GridConfig,
     SkeletonConfig,
     NestedKeyOf,
+    NestedKeyOfWithOptionals,
     TableRef,
     DefaultCellRendererProps,
     DefaultHeaderCellProps,
@@ -31,5 +33,6 @@ export type {
     ColumnCellRendererProps,
     PageSelectorRendererProps,
     SelectionHeaderRendererProps,
-    SelectionRendererProps
+    SelectionRendererProps,
+    OptionsCellProps
 };

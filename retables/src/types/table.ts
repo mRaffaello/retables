@@ -1,5 +1,5 @@
 import { BREAKPOINT, EXTERN_LINE, EXTERN_LINE_GROUP, SORT_DIRECTION } from './enums';
-import { NestedKeyOf } from './structs';
+import { NestedKeyOf, NestedKeyOfWithOptionals } from './structs';
 
 export type GlobalConfig = {
     /** Width breakpoint from mobile table and full size table */
@@ -40,14 +40,14 @@ export type TableConfig<T> = {
     /** Table cell renderered at the start of each row. Should be used for defining selectors */
     selectionConfig?: SelectionConfig;
     /** Callback for every click inside a table cell */
-    onCellPress?: (item: T, key: NestedKeyOf<T>) => any;
+    onCellPress?: (item: T, key: NestedKeyOfWithOptionals<T>) => any;
 } & GlobalConfig;
 
 export type ColumnConfig<T = any> = {
     /** Title for the header */
     title: string;
     /** Key of the object T that contains the value to be rendered inside the column cells. This is used also by default for sorting */
-    key: NestedKeyOf<T>;
+    key: NestedKeyOfWithOptionals<T>;
     /** Horizontal weight of the selection column */
     flex?: number;
     /** If not undefined, hides column before the specified breakpoint */
@@ -127,7 +127,7 @@ export type OptionsCell<T> = {
 
 export type ColumnOrder<T = any> = {
     /** Object key of T */
-    key: NestedKeyOf<T>;
+    key: NestedKeyOfWithOptionals<T>;
     /** Direction order */
     direction: SORT_DIRECTION;
 };
@@ -141,7 +141,7 @@ export type DefaultCellRendererProps = {
     /** Cell text */
     text: any;
     /** Cell row index */
-    rowIndex?: number;
+    rowIndex: number;
 };
 
 export type ColumnHeaderCellProps = {
@@ -153,7 +153,7 @@ export type ColumnCellRendererProps<T> = {
     /** Row item */
     item: T;
     /** Row index */
-    rowIndex?: number;
+    rowIndex: number;
 };
 
 export type OptionsCellProps<T> = {

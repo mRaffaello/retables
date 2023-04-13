@@ -50,6 +50,12 @@ type PersonKeys = NestedKeyOf<Person>;
 // type PersonKeys = "id" | "company" | "about.firstName" | "about.lastName" | "about.job" | "about.age" | "contacts.address" | "contacts.phone"
 ```
 
+:::info
+
+Arrays, dates and optional properties are excluded from `NestedKeyOf<T>`.
+In some occasions, like the columns configuration, **reTables** uses `NestedKeyOfWithOptionals<T>` type which allows optional properties.
+:::
+
 ### Column config
 
 Every table needs its **column config**. This is an object that describes which columns need to be displayed and how to retrieve data for each of it.
@@ -60,8 +66,8 @@ Every table needs its **column config**. This is an object that describes which 
 
 A basic column config needs:
 
--   **title** (string): Column name that will be displayed in the header
--   **key** (NestedKeyOf): Object key that selects the property. (This will also effect sorting)
+-   **title** (`string`): Column name that will be displayed in the header
+-   **key** (`NestedKeyOfWithOptionals<T>`): Object key that selects the property. (This will also effect sorting)
 
 As shown above, you can also specify a **flex property **(defaults to 1) that indicates the horizontal weight of each column.
 A complete list of the API can be found [here](/api-reference).

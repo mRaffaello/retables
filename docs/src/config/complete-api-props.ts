@@ -31,7 +31,7 @@ export const tableProps: ApiDesc[] = [
     },
     {
         name: 'onCellPress',
-        type: '(item: T, key: NestedKeyOf<T>) => any;',
+        type: '(item: T, key: NestedKeyOfWithOptionals<T>) => any;',
         description: 'Callback for every click inside a table cell'
     }
 ];
@@ -45,7 +45,7 @@ export const columnProps: ApiDesc[] = [
     },
     {
         name: 'key',
-        type: 'NestedKeyOf<T>',
+        type: 'NestedKeyOfWithOptionals<T>',
         description:
             'Key of the object T that contains the value to be rendered inside the column cells. This is used also by default for sorting'
     },
@@ -123,7 +123,7 @@ export const optionsCell: ApiDesc[] = [
     },
     {
         name: 'renderer',
-        type: '(props: any) => JSX.Element',
+        type: '(props: OptionsCellProps<T>) => JSX.Element',
         description: 'Options renderer for every row',
         required: true
     }
@@ -132,7 +132,7 @@ export const optionsCell: ApiDesc[] = [
 export const columnOrder: ApiDesc[] = [
     {
         name: 'key',
-        type: 'NestedKeyOf<T>',
+        type: 'NestedKeyOfWithOptionals<T>',
         description: 'Object key of T',
         required: true
     },
