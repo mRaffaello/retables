@@ -1,6 +1,6 @@
 {
     "name": "retables",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Yet another react table library",
     "license": "MIT",
     "repository": {
@@ -61,5 +61,9 @@
             "preinstall",
             "postinstall"
         ]
-    }
+    },
+    "keywords": [
+        "react",
+        "table"
+    ]
 }

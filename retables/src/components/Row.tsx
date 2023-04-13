@@ -22,7 +22,7 @@ type RowProps<T> = {
     columnConfigs: ColumnConfig<T>[];
     checked?: boolean;
     baseRowClasses?: string | ((index: number, isSelected: boolean) => string);
-    optionsCellRenderer?: OptionsCell['renderer'];
+    optionsCellRenderer?: OptionsCell<T>['renderer'];
     selectionConfigRenderer?: SelectionConfig['renderer'];
     onSelectionChange?: (key: any) => void;
     onCellPress?: (item: T, key: NestedKeyOf<T>) => any;
@@ -70,8 +70,16 @@ function Row<T = any>(props: RowProps<T>) {
                 </CellContainer>
             ))}
             {props.optionsCellRenderer && (
-                <OptionsContainer index={props.columnConfigs.length + 1}>
-                    <props.optionsCellRenderer />
+                <OptionsContainer
+                    index={
+                        props.selectionConfigRenderer
+                            ? props.columnConfigs.length + 1
+                            : props.columnConfigs.length
+                    }>
+                    <props.optionsCellRenderer
+                        rowIndex={props.indexTable}
+                        item={props.data as any}
+                    />
                 </OptionsContainer>
             )}
         </RowContainer>

@@ -36,7 +36,7 @@ export type TableConfig<T> = {
     /** Defines which column should be displayed */
     columnConfigs: ColumnConfig<T>[];
     /** Table cell renderered at the end of each row */
-    optionsCell?: OptionsCell;
+    optionsCell?: OptionsCell<T>;
     /** Table cell renderered at the start of each row. Should be used for defining selectors */
     selectionConfig?: SelectionConfig;
     /** Callback for every click inside a table cell */
@@ -118,11 +118,11 @@ export type CellPadding = {
     horizontal?: string | ((breakpoint: BREAKPOINT) => string);
 };
 
-export type OptionsCell = {
+export type OptionsCell<T> = {
     /** Horizontal weight of the options column */
     flex: number;
     /** Options renderer for every row */
-    renderer: (props: any) => JSX.Element;
+    renderer: (props: OptionsCellProps<T>) => JSX.Element;
 };
 
 export type ColumnOrder<T = any> = {
@@ -154,6 +154,13 @@ export type ColumnCellRendererProps<T> = {
     item: T;
     /** Row index */
     rowIndex?: number;
+};
+
+export type OptionsCellProps<T> = {
+    /** Row item */
+    item: T;
+    /** Row index */
+    rowIndex: number;
 };
 
 export type PageSelectorRendererProps = {
