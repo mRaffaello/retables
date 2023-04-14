@@ -40,14 +40,18 @@ function Table<T = any>(props: TableConfig<T>, ref: Ref<TableRef>) {
     // Memos
     const orderedData = useMemo<T[]>(() => {
         if (columnOrder && props.data) {
-            const columnKey = columnOrder.key;
-            const or = getColumnOrder(columnKey);
-            const column = props.columnConfigs!.find(c => c.key === columnKey)!;
+            const columnIndex = columnOrder.index;
+            const or = getColumnOrder(columnIndex);
+            const column = props.columnConfigs!.find((_, i) => i === columnIndex)!;
+
+            if (!column.key) return props.data;
 
             let ordered = [...props.data].sort((a: any, b: any) => {
                 if (column?.compare) return column.compare(a, b);
-                if (getByString(a, columnKey as string) < getByString(b, columnKey as string)) 1;
-                else if (getByString(a, columnKey as string) > getByString(b, columnKey as string))
+                if (getByString(a, column.key as string) < getByString(b, column.key as string)) 1;
+                else if (
+                    getByString(a, column.key as string) > getByString(b, column.key as string)
+                )
                     return -1;
                 return 0;
             });
@@ -56,6 +60,7 @@ function Table<T = any>(props: TableConfig<T>, ref: Ref<TableRef>) {
 
             return ordered;
         } else if (props.data) return props.data;
+
         return [];
     }, [props.columnConfigs, columnOrder, props.data]);
 

@@ -1,28 +1,28 @@
 import { useState } from 'react';
 import { SORT_DIRECTION } from '../types/enums';
-import { NestedKeyOf } from '../types/structs';
 import { ColumnOrder } from '../types/table';
 
 function useOrder<T>() {
     // State
-    const [columnOrder, _setColumnOrders] = useState<ColumnOrder<T>>();
+    const [columnOrder, _setColumnOrders] = useState<ColumnOrder>();
 
     // Methods
-    const setColumnOrder = (key: NestedKeyOf<T>) => {
-        if (!columnOrder || columnOrder.key !== key)
+    const setColumnOrder = (index: number) => {
+        if (!columnOrder || columnOrder.index !== index)
             _setColumnOrders({
-                key,
+                index,
                 direction: SORT_DIRECTION.ASC
             });
-        else if (columnOrder.key === key && columnOrder.direction === SORT_DIRECTION.ASC)
+        else if (columnOrder.index === index && columnOrder.direction === SORT_DIRECTION.ASC)
             _setColumnOrders({
-                key,
+                index,
                 direction: SORT_DIRECTION.DESC
             });
         else _setColumnOrders(undefined);
     };
-    const getColumnOrder = (columnKey: NestedKeyOf<T>) => {
-        if (columnOrder?.key === columnKey) return columnOrder.direction;
+
+    const getColumnOrder = (index: number) => {
+        if (columnOrder?.index === index) return columnOrder.direction;
     };
 
     return {

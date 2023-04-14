@@ -31,7 +31,7 @@ export const tableProps: ApiDesc[] = [
     },
     {
         name: 'onCellPress',
-        type: '(item: T, key: NestedKeyOfWithOptionals<T>) => any;',
+        type: '(item: T, column: { index: number; key?: NestedKeyOfWithOptionals<T>;}) => any',
         description: 'Callback for every click inside a table cell'
     }
 ];

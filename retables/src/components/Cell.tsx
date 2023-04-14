@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
-import { NestedKeyOf } from '../types/structs';
+import { NestedKeyOfWithOptionals } from '../types/structs';
 import { ColumnConfig } from '../types/table';
 import { getByString } from '../utils/objects';
 
 type CellProps<T> = {
     item: T;
-    columnKey: NestedKeyOf<T>;
     rowIndex: number;
+    columnKey?: NestedKeyOfWithOptionals<T>;
     columnRenderer?: ColumnConfig<T>['renderer'];
     cellRenderer?: (props: { text: any; rowIndex: number }) => JSX.Element;
 };
@@ -21,14 +21,14 @@ function Cell<T = any>(props: CellProps<T>) {
         else if (props.cellRenderer)
             return (
                 <props.cellRenderer
-                    text={getByString(item, columnKey as string)}
+                    text={columnKey ? getByString(item, columnKey as string) : undefined}
                     rowIndex={rowIndex}
                 />
             );
         else
             return (
                 <DefaultCellContainer>
-                    {getByString(item, columnKey as string)}
+                    {columnKey ? getByString(item, columnKey as string) : undefined}
                 </DefaultCellContainer>
             );
     };

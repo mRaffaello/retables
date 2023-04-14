@@ -75,7 +75,7 @@ describe('Basic row min', () => {
     it('cells have the correct values in the right order', () => {
         mockPeopleColumns.forEach((c, i) => {
             cy.get('th').eq(i).should('contain.text', c.title);
-            cy.get('td').eq(i).should('contain.text', getByString(person, c.key));
+            cy.get('td').eq(i).should('contain.text', getByString(person, c.key!));
         });
     });
 

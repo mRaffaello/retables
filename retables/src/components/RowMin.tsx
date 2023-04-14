@@ -9,7 +9,7 @@ import { ColumnConfig } from '../types/table';
 import { memo, useCallback, useMemo, useState } from 'react';
 
 import { deepEqual } from 'fast-equals';
-import { NestedKeyOf } from '../types/structs';
+import { NestedKeyOf, NestedKeyOfWithOptionals } from '../types/structs';
 import styled from '@emotion/styled';
 import { CSS_VARIABLE } from '../types/enums';
 
@@ -23,7 +23,13 @@ type RowMin<T> = {
     baseHeaderClasses?: string;
     cellRenderer?: (props: { text: any; rowIndex: number }) => JSX.Element;
     baseHeaderRenderer?: (props: { title: string }) => JSX.Element;
-    onCellPress?: (item: T, key: NestedKeyOf<T>) => any;
+    onCellPress?: (
+        item: T,
+        column: {
+            index: number;
+            key?: NestedKeyOfWithOptionals<T>;
+        }
+    ) => any;
     onSelectionChange?: (key: any) => void;
 };
 
@@ -54,12 +60,18 @@ function RowMin<T = any>(props: RowMin<T>) {
     return (
         <BodyContainer>
             {props.columnConfigs.map((c, i) => (
-                <RowContainer key={String(c.key)} className={baseRowClasses}>
+                <RowContainer key={c.key ? String(c.key) : i} className={baseRowClasses}>
                     <CellHeaderContainer className={props.baseHeaderClasses}>
                         {renderHeaderCell(c)}
                     </CellHeaderContainer>
                     <CellValueContainer
-                        onClick={() => props.onCellPress && props.onCellPress(props.data, c.key)}>
+                        onClick={() =>
+                            props.onCellPress &&
+                            props.onCellPress(props.data, {
+                                key: c.key,
+                                index: i
+                            })
+                        }>
                         <Cell
                             columnKey={c.key}
                             columnRenderer={c.renderer}

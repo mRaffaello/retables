@@ -212,7 +212,7 @@ describe('Header with column order and custom sorting icon renderers', () => {
                 <Header<Person>
                     columnConfigs={mockPeopleColumns}
                     columnOrder={{
-                        key: mockPeopleColumns[defaultSortedCol].key,
+                        index: defaultSortedCol,
                         direction: SORT_DIRECTION.DESC
                     }}
                     setColumnOrder={setColumnOrderSpy}

@@ -7,7 +7,6 @@ import { ColumnConfig, ColumnOrder, OrderIconsConfig, SelectionConfig } from '..
 import Bars2Icon from '../icons/Bars2Icon';
 import ChevronDoubleDownIcon from '../icons/ChevronDoubleDownIcon';
 import ChevronDoubleUpIcon from '../icons/ChevronDoubleUpIcon';
-import { NestedKeyOf } from '../types/structs';
 import { gc } from '../utils/css';
 import { CSS_VARIABLE } from '../types/enums';
 import styled from '@emotion/styled';
@@ -16,11 +15,11 @@ import { GRID_DEFALTS } from '../config/constants';
 type HeaderProps<T> = {
     columnConfigs: ColumnConfig<T>[];
     baseHeaderClasses?: string;
-    columnOrder?: ColumnOrder<T>;
+    columnOrder?: ColumnOrder;
     orderIconsConfig?: OrderIconsConfig;
     hasSelectionConfig?: boolean;
     allKeysChecked?: boolean;
-    setColumnOrder: (key: NestedKeyOf<T>) => void;
+    setColumnOrder: (index: number) => void;
     baseHeaderRenderer?: (props: { title: string }) => JSX.Element;
     headerSelectionRenderer?: SelectionConfig['headerRenderer'];
     onSelectionChange?: (key: any, globalSwitch?: boolean) => void;
@@ -40,9 +39,9 @@ function Header<T = any>(props: HeaderProps<T>) {
 
     // Callbacks
     const renderHeaderIcon = useCallback(
-        (column: ColumnConfig<T>) => {
+        (index: number) => {
             const direction =
-                columnOrder?.key === column.key ? columnOrder.direction : SORT_DIRECTION.INITIAL;
+                columnOrder?.index === index ? columnOrder.direction : SORT_DIRECTION.INITIAL;
 
             switch (direction) {
                 case SORT_DIRECTION.ASC:
@@ -96,10 +95,10 @@ function Header<T = any>(props: HeaderProps<T>) {
                 )}
                 {columnConfigs.map((c, i) => (
                     <CellContainer
-                        key={String(c.key)}
+                        key={c.key ? String(c.key) : i}
                         index={props.hasSelectionConfig ? i + 1 : i}
-                        onClick={() => !c.disableOrderIcon && setColumnOrder(c.key)}>
-                        {!c.disableOrderIcon && renderHeaderIcon(c)}
+                        onClick={() => !c.disableOrderIcon && setColumnOrder(i)}>
+                        {!c.disableOrderIcon && renderHeaderIcon(i)}
                         {renderHeaderCell(c)}
                     </CellContainer>
                 ))}

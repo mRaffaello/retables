@@ -10,7 +10,7 @@ import { memo, useMemo } from 'react';
 import { getByString } from '../utils/objects';
 
 import { deepEqual } from 'fast-equals';
-import { NestedKeyOf } from '../types/structs';
+import { NestedKeyOf, NestedKeyOfWithOptionals } from '../types/structs';
 import styled from '@emotion/styled';
 import { gc } from '../utils/css';
 import { CSS_VARIABLE } from '../types/enums';
@@ -25,7 +25,13 @@ type RowProps<T> = {
     optionsCellRenderer?: OptionsCell<T>['renderer'];
     selectionConfigRenderer?: SelectionConfig['renderer'];
     onSelectionChange?: (key: any) => void;
-    onCellPress?: (item: T, key: NestedKeyOf<T>) => any;
+    onCellPress?: (
+        item: T,
+        column: {
+            index: number;
+            key?: NestedKeyOfWithOptionals<T>;
+        }
+    ) => any;
     cellRenderer?: (props: { text: any; rowIndex: number }) => JSX.Element;
 };
 
@@ -57,9 +63,11 @@ function Row<T = any>(props: RowProps<T>) {
             )}
             {props.columnConfigs.map((c, i) => (
                 <CellContainer
-                    key={String(c.key)}
+                    key={c.key ? String(c.key) : i}
                     index={props.selectionConfigRenderer ? i + 1 : i}
-                    onClick={() => props.onCellPress && props.onCellPress(props.data, c.key)}>
+                    onClick={() =>
+                        props.onCellPress && props.onCellPress(props.data, { key: c.key, index: i })
+                    }>
                     <Cell
                         columnRenderer={c.renderer}
                         columnKey={c.key}

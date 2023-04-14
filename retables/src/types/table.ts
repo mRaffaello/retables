@@ -40,14 +40,20 @@ export type TableConfig<T> = {
     /** Table cell renderered at the start of each row. Should be used for defining selectors */
     selectionConfig?: SelectionConfig;
     /** Callback for every click inside a table cell */
-    onCellPress?: (item: T, key: NestedKeyOfWithOptionals<T>) => any;
+    onCellPress?: (
+        item: T,
+        column: {
+            index: number;
+            key?: NestedKeyOfWithOptionals<T>;
+        }
+    ) => any;
 } & GlobalConfig;
 
 export type ColumnConfig<T = any> = {
     /** Title for the header */
     title: string;
     /** Key of the object T that contains the value to be rendered inside the column cells. This is used also by default for sorting */
-    key: NestedKeyOfWithOptionals<T>;
+    key?: NestedKeyOfWithOptionals<T>;
     /** Horizontal weight of the selection column */
     flex?: number;
     /** If not undefined, hides column before the specified breakpoint */
@@ -125,9 +131,9 @@ export type OptionsCell<T> = {
     renderer: (props: OptionsCellProps<T>) => JSX.Element;
 };
 
-export type ColumnOrder<T = any> = {
-    /** Object key of T */
-    key: NestedKeyOfWithOptionals<T>;
+export type ColumnOrder = {
+    /** Index of the column inside columns configuration */
+    index: number;
     /** Direction order */
     direction: SORT_DIRECTION;
 };

@@ -14,9 +14,9 @@ import useBreakpoint from '../hooks/useBreakpoint';
 
 type TableFullProps<T> = {
     checkedKeys: any[];
-    columnOrder?: ColumnOrder<T>;
+    columnOrder?: ColumnOrder;
     allKeysChecked?: boolean;
-    setColumnOrder: (key: NestedKeyOf<T>) => void;
+    setColumnOrder: (index: number) => void;
     onSelectionChange: (key: any, globalSwitch?: boolean) => void;
 } & TableConfig<T>;
 

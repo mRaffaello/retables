@@ -9,10 +9,9 @@ import ExternLines from './ExternLines';
 
 type TableMinProps<T> = {
     checkedKeys: any[];
-    columnOrder?: ColumnOrder<T>;
+    columnOrder?: ColumnOrder;
     setColumnOrder: (key: NestedKeyOf<T>) => void;
     onSelectionChange: (key: any) => void;
-    onCellPress?: (item: T, key: NestedKeyOf<T>) => any;
 } & TableConfig<T>;
 
 function TableMin<T = any>(props: TableMinProps<T>) {
