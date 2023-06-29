@@ -112,7 +112,6 @@ function TableFull<T = any>(props: TableFullProps<T>) {
 const TableWrapperContainer = styled.div`
     position: relative;
     width: 100%;
-    overflow: hidden;
 `;
 
 const TableContainer = styled.table`
