@@ -162,7 +162,7 @@ function Table<T = any>(props: TableConfig<T>, ref: Ref<TableRef>) {
                     allKeysChecked={allKeysChecked}
                 />
             )}
-            {props.paginationConfig && props.data?.length && (
+            {props.paginationConfig && props.data?.length ? (
                 <props.paginationConfig.renderer
                     nPages={
                         props.data.length % props.paginationConfig.entryPerPage === 0
@@ -173,6 +173,8 @@ function Table<T = any>(props: TableConfig<T>, ref: Ref<TableRef>) {
                     currentPage={page}
                     setPage={changePage}
                 />
+            ) : (
+                <div />
             )}
         </>
     );
