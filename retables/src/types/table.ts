@@ -172,10 +172,14 @@ export type OptionsCellProps<T> = {
 export type PageSelectorRendererProps = {
     /** Number of pages */
     nPages: number;
+    /** Items per page */
+    entryPerPage?: number;
     /** Currently selected page index */
     currentPage: number;
     /** Change the selected page */
     setPage: (page: number) => void;
+    /** Change the selected page */
+    setEntriesPerPage: (itemsPerPage: number) => void;
 };
 
 export type SelectionRendererProps = {

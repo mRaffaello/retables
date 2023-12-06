@@ -25,6 +25,7 @@ function Table<T = any>(props: TableConfig<T>, ref: Ref<TableRef>) {
 
     // State
     const [page, setPage] = useState(0);
+    const [entryPerPage, setEntriesPerPage] = useState(props.paginationConfig?.entryPerPage);
     const [areColumnCollapsed, setAreColumnCollapsed] = useState(
         compareBreakpoints(
             props.breakpoint ?? DEFAULT_BREAKPOINT,
@@ -48,7 +49,8 @@ function Table<T = any>(props: TableConfig<T>, ref: Ref<TableRef>) {
 
             let ordered = [...props.data].sort((a: any, b: any) => {
                 if (column?.compare) return column.compare(a, b);
-                if (getByString(a, column.key as string) < getByString(b, column.key as string)) 1;
+                if (getByString(a, column.key as string) < getByString(b, column.key as string))
+                    return 1;
                 else if (
                     getByString(a, column.key as string) > getByString(b, column.key as string)
                 )
@@ -65,13 +67,10 @@ function Table<T = any>(props: TableConfig<T>, ref: Ref<TableRef>) {
     }, [props.columnConfigs, columnOrder, props.data]);
 
     const paginatedData = useMemo<T[]>(() => {
-        return props.paginationConfig
-            ? orderedData.slice(
-                  props.paginationConfig.entryPerPage * page,
-                  props.paginationConfig.entryPerPage * (page + 1)
-              )
+        return entryPerPage
+            ? orderedData.slice(entryPerPage * page, entryPerPage * (page + 1))
             : orderedData;
-    }, [orderedData, page, props.paginationConfig]);
+    }, [orderedData, page, entryPerPage]);
 
     const allKeysChecked = useMemo(() => {
         if (!paginatedData.length) return false;
@@ -99,6 +98,13 @@ function Table<T = any>(props: TableConfig<T>, ref: Ref<TableRef>) {
             setCheckedKeys([]);
             checkedKeysRef.current = [];
         }
+    };
+
+    const changeEntriesPerPage = (nextEntriesPerPage: number) => {
+        setPage(0);
+        setCheckedKeys([]);
+        checkedKeysRef.current = [];
+        setEntriesPerPage(nextEntriesPerPage);
     };
 
     // Handles
@@ -162,16 +168,17 @@ function Table<T = any>(props: TableConfig<T>, ref: Ref<TableRef>) {
                     allKeysChecked={allKeysChecked}
                 />
             )}
-            {props.paginationConfig && props.data?.length ? (
+            {entryPerPage && props.paginationConfig?.renderer && props.data?.length ? (
                 <props.paginationConfig.renderer
                     nPages={
-                        props.data.length % props.paginationConfig.entryPerPage === 0
-                            ? props.data.length / props.paginationConfig.entryPerPage
-                            : Math.trunc(props.data.length / props.paginationConfig.entryPerPage) +
-                              1
+                        props.data.length % entryPerPage === 0
+                            ? props.data.length / entryPerPage
+                            : Math.trunc(props.data.length / entryPerPage) + 1
                     }
+                    entryPerPage={entryPerPage}
                     currentPage={page}
                     setPage={changePage}
+                    setEntriesPerPage={changeEntriesPerPage}
                 />
             ) : (
                 <div />
