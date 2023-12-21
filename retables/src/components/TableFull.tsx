@@ -116,6 +116,7 @@ const TableWrapperContainer = styled.div`
 
 const TableContainer = styled.table`
     width: 100%;
+    display: block;
 `;
 
 const TableBodyContainer = styled.tbody`

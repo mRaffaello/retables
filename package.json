@@ -1,6 +1,6 @@
 {
     "name": "retables-monorepo",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "Yet another react table library",
     "private": true,
     "main": "index.js",
